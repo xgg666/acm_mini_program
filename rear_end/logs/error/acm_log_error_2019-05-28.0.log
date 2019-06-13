@@ -1,0 +1,42 @@
+2019-05-28 16:25:57.761 ERROR --- [http-nio-9999-exec-5] com.example.acm.conf.MyControllerAdvice Line:25  - /userLogin/selectUser--Request method 'GET' not supported
+2019-05-28 17:53:41.937 ERROR --- [http-nio-9999-exec-7] com.example.acm.conf.MyControllerAdvice Line:25  - /userLogin/updateUserInfo/--Failed to convert value of type 'java.lang.String' to required type 'int'; nested exception is java.lang.NumberFormatException: For input string: "undefined"
+2019-05-28 17:56:37.156 ERROR --- [http-nio-9999-exec-3] com.example.acm.conf.MyControllerAdvice Line:25  - /userLogin/updateUserInfo/--Failed to convert value of type 'java.lang.String' to required type 'int'; nested exception is java.lang.NumberFormatException: For input string: "undefined"
+2019-05-28 18:47:37.289 ERROR --- [http-nio-9999-exec-9] com.example.acm.conf.MyControllerAdvice Line:25  - /userLogin/updateUserInfo/--Failed to convert value of type 'java.lang.String' to required type 'int'; nested exception is java.lang.NumberFormatException: For input string: "undefined"
+2019-05-28 18:48:12.713 ERROR --- [http-nio-9999-exec-7] com.example.acm.conf.MyControllerAdvice Line:25  - /userLogin/updateUserInfo/--Failed to convert value of type 'java.lang.String' to required type 'int'; nested exception is java.lang.NumberFormatException: For input string: "undefined"
+2019-05-28 18:49:20.006 ERROR --- [http-nio-9999-exec-3] com.example.acm.conf.MyControllerAdvice Line:25  - /userLogin/updateUserInfo/--Failed to convert value of type 'java.lang.String' to required type 'int'; nested exception is java.lang.NumberFormatException: For input string: "undefined"
+2019-05-28 18:49:35.632 ERROR --- [http-nio-9999-exec-8] com.example.acm.conf.MyControllerAdvice Line:25  - /userLogin/updateUserInfo/--Failed to convert value of type 'java.lang.String' to required type 'int'; nested exception is java.lang.NumberFormatException: For input string: "undefined"
+2019-05-28 18:50:58.397 ERROR --- [http-nio-9999-exec-10] com.example.acm.conf.MyControllerAdvice Line:25  - /userLogin/updateUserInfo/--Failed to convert value of type 'java.lang.String' to required type 'int'; nested exception is java.lang.NumberFormatException: For input string: "undefined"
+2019-05-28 18:51:58.129 ERROR --- [http-nio-9999-exec-6] com.example.acm.conf.MyControllerAdvice Line:25  - /userLogin/updateUserInfo/--Failed to convert value of type 'java.lang.String' to required type 'int'; nested exception is java.lang.NumberFormatException: For input string: "undefined"
+2019-05-28 18:55:50.799 ERROR --- [http-nio-9999-exec-1] com.example.acm.conf.MyControllerAdvice Line:25  - /userLogin/updateUserInfo/--Failed to convert value of type 'java.lang.String' to required type 'int'; nested exception is java.lang.NumberFormatException: For input string: "undefined"
+2019-05-28 19:30:49.751 ERROR --- [http-nio-9999-exec-3] com.example.acm.conf.MyControllerAdvice Line:25  - /userLogin/updateUserInfo/--Required String parameter 'username' is not present
+2019-05-28 20:38:33.126 ERROR --- [http-nio-9999-exec-6] com.example.acm.conf.MyControllerAdvice Line:25  - /competition/detailCompetition--Required long parameter 'competitionId' is not present
+2019-05-28 22:38:48.478 ERROR --- [http-nio-9999-exec-3] com.example.acm.conf.MyControllerAdvice Line:25  - /competition/detailCompetitionWithUser--Required int parameter 'userId' is not present
+2019-05-28 22:38:56.634 ERROR --- [http-nio-9999-exec-4] com.example.acm.conf.MyControllerAdvice Line:25  - /competition/detailCompetitionWithUser--Required int parameter 'userId' is not present
+2019-05-28 22:48:39.934 ERROR --- [http-nio-9999-exec-3] com.example.acm.service.deal.Impl.CompetitionDealImpl Line:281 - 
+### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '13' for key 'PRIMARY'
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: INSERT INTO applycompetition    ( applyCompetitionId,    competitionId,    joinUser,    createDate,    isEffective )    values    ( ?,    ?,    ?,    ?,    ? )
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '13' for key 'PRIMARY'
+; ]; Duplicate entry '13' for key 'PRIMARY'; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '13' for key 'PRIMARY'
+2019-05-28 22:49:03.950 ERROR --- [http-nio-9999-exec-4] com.example.acm.service.deal.Impl.CompetitionDealImpl Line:281 - 
+### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '13' for key 'PRIMARY'
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: INSERT INTO applycompetition    ( applyCompetitionId,    competitionId,    joinUser,    createDate,    isEffective )    values    ( ?,    ?,    ?,    ?,    ? )
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '13' for key 'PRIMARY'
+; ]; Duplicate entry '13' for key 'PRIMARY'; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '13' for key 'PRIMARY'
+2019-05-28 22:49:58.263 ERROR --- [http-nio-9999-exec-5] com.example.acm.service.deal.Impl.CompetitionDealImpl Line:281 - 
+### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '13' for key 'PRIMARY'
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: INSERT INTO applycompetition    ( applyCompetitionId,    competitionId,    joinUser,    createDate,    isEffective )    values    ( ?,    ?,    ?,    ?,    ? )
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '13' for key 'PRIMARY'
+; ]; Duplicate entry '13' for key 'PRIMARY'; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '13' for key 'PRIMARY'
+2019-05-28 22:50:10.223 ERROR --- [http-nio-9999-exec-6] com.example.acm.service.deal.Impl.CompetitionDealImpl Line:281 - 
+### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '13' for key 'PRIMARY'
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: INSERT INTO applycompetition    ( applyCompetitionId,    competitionId,    joinUser,    createDate,    isEffective )    values    ( ?,    ?,    ?,    ?,    ? )
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '13' for key 'PRIMARY'
+; ]; Duplicate entry '13' for key 'PRIMARY'; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '13' for key 'PRIMARY'

@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.acm.mapper.ImpressionMapper">
+
+	<resultMap type="com.example.acm.entity.Impression" id="impressionMap">
+		<result column="impressionId" property="impressionId"/>   
+		<result column="impressionTitle" property="impressionTitle"/>   
+		<result column="imUser" property="imUser"/>   
+		<result column="createUser" property="createUser"/>   
+		<result column="createDate" property="createDate"/>   
+		<result column="agreeNum" property="agreeNum"/>   
+		<result column="isEffective" property="isEffective"/>   
+	</resultMap>
+
+	<resultMap type="com.example.acm.returnView.UserImpression" id="tmp">
+		<id column="userId" property="userId"/>
+		<result column="auth" property="auth"/>
+		<result column="classNum" property="classNum"/>
+		<result column="createDay" property="createDay"/>
+		<result column="grade" property="grade"/>
+		<result column="image" property="image"/>
+		<result column="realname" property="realname"/>
+		<result column="studentId" property="studentId"/>
+		<result column="username" property="username"/>
+		<collection property="impressionList" ofType="com.example.acm.entity.Impression">
+			<id column="impressionId" property="impressionId"/>
+			<result column="impressionTitle" property="impressionTitle"/>
+			<result column="imUser" property="imUser"/>
+			<result column="createUser" property="createUser"/>
+			<result column="createDate" property="createDate"/>
+			<result column="agreeNum" property="agreeNum"/>
+		</collection>
+	</resultMap>
+
+	<select id="findUserImpression" resultMap="tmp">
+		select a.*, b.*
+		from user a left join impression b on a.userId=b.imUser
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="map.isEffective != null ">
+				AND b.isEffective=#{map.isEffective}
+			</if>
+			<if test="map.userId != null ">
+				AND a.userId=#{map.userId}
+			</if>
+		</trim>
+		order by b.agreeNum DESC
+		<if test="map.start != null ">
+			limit #{map.start},#{map.limit}
+		</if>
+	</select>
+
+	<sql id="impression_field_list_alias">
+		a.impressionId,
+		a.impressionTitle,
+		a.imUser,
+		a.createUser,
+		a.createDate,
+		a.agreeNum,
+		a.isEffective
+	</sql>
+
+	<insert id="addImpression" useGeneratedKeys="true">
+		INSERT INTO impression 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="impression.impressionId != null">impressionId,</if>
+			<if test="impression.impressionTitle != null">impressionTitle,</if>
+			<if test="impression.imUser != null">imUser,</if>
+			<if test="impression.createUser != null">createUser,</if>
+			<if test="impression.createDate != null">createDate,</if>
+			<if test="impression.agreeNum != null">agreeNum,</if>
+			<if test="impression.isEffective != null">isEffective,</if>
+		</trim>
+		values
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="impression.impressionId != null">#{impression.impressionId},</if>
+			<if test="impression.impressionTitle != null">#{impression.impressionTitle},</if>
+			<if test="impression.imUser != null">#{impression.imUser},</if>
+			<if test="impression.createUser != null">#{impression.createUser},</if>
+			<if test="impression.createDate != null">#{impression.createDate},</if>
+			<if test="impression.agreeNum != null">#{impression.agreeNum},</if>
+			<if test="impression.isEffective != null">#{impression.isEffective},</if>
+		</trim>
+	</insert>
+	
+	<insert id="addImpressionList" parameterType="com.example.acm.entity.Impression">
+		INSERT INTO impression 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			impressionId,
+			impressionTitle,
+			imUser,
+			createUser,
+			createDate,
+			agreeNum,
+			isEffective,
+		</trim>
+		values
+		<foreach collection="list" item="item" index="index" separator=",">
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			#{item.impressionId},
+			#{item.impressionTitle},
+			#{item.imUser},
+			#{item.createUser},
+			#{item.createDate},
+			#{item.agreeNum},
+			#{item.isEffective},
+		</trim>
+		</foreach>
+		ON DUPLICATE KEY UPDATE 
+		<trim prefix="" suffix="" suffixOverrides=",">
+				impressionId = VALUES (impressionId),
+		</trim>
+	</insert>
+	
+	<delete id="deleteImpressionByImpressionId">
+		DELETE FROM impression WHERE impressionId = #{impressionId};
+	</delete>
+
+	<update id="updateImpressionByImpressionId">
+		UPDATE impression
+		<set>
+			<if test="impression.impressionId != null">impressionId=#{impression.impressionId},</if>
+			<if test="impression.impressionTitle != null">impressionTitle=#{impression.impressionTitle},</if>
+			<if test="impression.imUser != null">imUser=#{impression.imUser},</if>
+			<if test="impression.createUser != null">createUser=#{impression.createUser},</if>
+			<if test="impression.createDate != null">createDate=#{impression.createDate},</if>
+			<if test="impression.agreeNum != null">agreeNum=#{impression.agreeNum},</if>
+			<if test="impression.isEffective != null">isEffective=#{impression.isEffective},</if>
+		</set>
+		WHERE impressionId = #{impressionId};	
+	</update>
+	
+	<select id="getImpressionByImpressionId" resultType="com.example.acm.entity.Impression">
+		SELECT 
+			<include refid="impression_field_list_alias"/> 
+		FROM 
+			impression a
+		WHERE 
+			impressionId = #{impressionId}
+		LIMIT 1;
+	</select>
+
+	<select id="findImpressionListByImpressionId" resultType="com.example.acm.entity.Impression">
+		SELECT
+		<include refid="impression_field_list_alias"/>
+		FROM 
+			impression a
+		<where>
+			<if test="impressionId != null">
+				a.impressionId = #{impressionId}
+			</if>
+		</where>
+	</select>
+	
+	<select id="findImpression2MapListByImpressionId" resultType="java.util.Map">
+		SELECT
+		<include refid="impression_field_list_alias"/>
+		FROM 
+			impression a
+		<where>
+			<if test="impressionId != null">
+				a.impressionId = #{impressionId}
+			</if>
+		</where>
+	</select>
+	
+	<select id="findImpressionList" resultType="com.example.acm.entity.Impression">
+		SELECT
+		<include refid="impression_field_list_alias"/>
+		FROM 
+			impression a;		
+	</select>
+	
+	<select id="findImpression2MapList" resultType="java.util.Map">
+		SELECT
+		<include refid="impression_field_list_alias"/>
+		FROM 
+			impression a;		
+	</select>
+	
+	<select id="countImpressionListByQuery" resultType="java.lang.Integer">
+		SELECT
+			count(*)
+		FROM 
+			impression a
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="map.isEffective != null ">
+				AND a.isEffective=#{map.isEffective} 
+			</if>
+		</trim>
+	</select>
+	
+	<select id="findImpressionListByQuery" resultType="com.example.acm.entity.Impression">
+		SELECT
+		<include refid="impression_field_list_alias"/>
+		FROM 
+			impression a
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="map.isEffective != null ">
+				AND a.isEffective=#{map.isEffective} 
+			</if>
+		</trim>
+		<if test="map.order != null ">
+		ORDER BY 
+			a.${map.order} ${map.aOrS} 
+		</if>
+		<if test="map.start != null ">
+		limit #{map.start},#{map.limit}
+		</if>
+	</select>
+	
+	<select id="countImpressionMapListByQuery" resultType="java.lang.Integer">
+		SELECT
+			count(*)
+		FROM 
+			impression a
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="map.isEffective != null ">
+				AND a.isEffective=#{map.isEffective} 
+			</if>
+		</trim>
+	</select>
+	
+	<select id="findImpressionMapListByQuery" resultType="java.util.Map">
+		SELECT
+		<include refid="impression_field_list_alias"/>
+		FROM 
+			impression a
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="map.isEffective != null ">
+				AND a.isEffective=#{map.isEffective} 
+			</if>
+		</trim>
+		<if test="map.order != null ">
+		ORDER BY 
+			a.${map.order} ${map.aOrS} 
+		</if>
+		<if test="map.start != null ">
+		limit #{map.start},#{map.limit}
+		</if>
+	</select>
+	
+</mapper>

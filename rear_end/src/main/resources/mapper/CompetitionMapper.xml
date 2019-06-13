@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.acm.mapper.CompetitionMapper">
+
+	<resultMap type="com.example.acm.entity.Competition" id="competitionMap">
+		<result column="competitionId" property="competitionId"/>   
+		<result column="competitionTitle" property="competitionTitle"/>   
+		<result column="competitionBody" property="competitionBody"/>   
+		<result column="createDate" property="createDate"/>   
+		<result column="createUser" property="createUser"/>   
+		<result column="updateDate" property="updateDate"/>   
+		<result column="updateUser" property="updateUser"/>
+		<result property="isDone" column="isDone"/>
+		<result column="isEffective" property="isEffective"/>
+	</resultMap>
+
+	<sql id="competition_field_list_alias">
+		a.competitionId,
+		a.competitionTitle,
+		a.competitionBody,
+		a.createDate,
+		a.createUser,
+		a.updateDate,
+		a.updateUser,
+		a.isDone,
+		a.isEffective
+	</sql>
+
+	<insert id="addCompetition" useGeneratedKeys="true">
+		INSERT INTO competition 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="competition.competitionId != null">competitionId,</if>
+			<if test="competition.competitionTitle != null">competitionTitle,</if>
+			<if test="competition.competitionBody != null">competitionBody,</if>
+			<if test="competition.createDate != null">createDate,</if>
+			<if test="competition.createUser != null">createUser,</if>
+			<if test="competition.updateDate != null">updateDate,</if>
+			<if test="competition.updateUser != null">updateUser,</if>
+			<if test="competition.isDone != null">isDone,</if>
+			<if test="competition.isEffective != null">isEffective,</if>
+		</trim>
+		values
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="competition.competitionId != null">#{competition.competitionId},</if>
+			<if test="competition.competitionTitle != null">#{competition.competitionTitle},</if>
+			<if test="competition.competitionBody != null">#{competition.competitionBody},</if>
+			<if test="competition.createDate != null">#{competition.createDate},</if>
+			<if test="competition.createUser != null">#{competition.createUser},</if>
+			<if test="competition.updateDate != null">#{competition.updateDate},</if>
+			<if test="competition.updateUser != null">#{competition.updateUser},</if>
+			<if test="competition.isEffective != null">#{competition.isEffective},</if>
+		</trim>
+	</insert>
+	
+	<insert id="addCompetitionList" parameterType="com.example.acm.entity.Competition">
+		INSERT INTO competition 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			competitionId,
+			competitionTitle,
+			competitionBody,
+			createDate,
+			createUser,
+			updateDate,
+			updateUser,
+			isDone
+			isEffective,
+		</trim>
+		values
+		<foreach collection="list" item="item" index="index" separator=",">
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			#{item.competitionId},
+			#{item.competitionTitle},
+			#{item.competitionBody},
+			#{item.createDate},
+			#{item.createUser},
+			#{item.updateDate},
+			#{item.updateUser},
+			#{item.isDone}
+			#{item.isEffective},
+		</trim>
+		</foreach>
+		ON DUPLICATE KEY UPDATE 
+		<trim prefix="" suffix="" suffixOverrides=",">
+				competitionId = VALUES (competitionId),
+		</trim>
+	</insert>
+	
+	<delete id="deleteCompetitionByCompetitionId">
+		DELETE FROM competition WHERE competitionId = #{competitionId};
+	</delete>
+
+	<update id="updateCompetitionByCompetitionId">
+		UPDATE competition
+		<set>
+			<if test="competition.competitionId != null">competitionId=#{competition.competitionId},</if>
+			<if test="competition.competitionTitle != null">competitionTitle=#{competition.competitionTitle},</if>
+			<if test="competition.competitionBody != null">competitionBody=#{competition.competitionBody},</if>
+			<if test="competition.createDate != null">createDate=#{competition.createDate},</if>
+			<if test="competition.createUser != null">createUser=#{competition.createUser},</if>
+			<if test="competition.updateDate != null">updateDate=#{competition.updateDate},</if>
+			<if test="competition.updateUser != null">updateUser=#{competition.updateUser},</if>
+			<if test="competition.isDone != null">isDone=#{competition.isDone},</if>
+			<if test="competition.isEffective != null">isEffective=#{competition.isEffective},</if>
+		</set>
+		WHERE competitionId = #{competitionId};	
+	</update>
+	
+	<select id="getCompetitionByCompetitionId" resultType="com.example.acm.entity.Competition">
+		SELECT 
+			<include refid="competition_field_list_alias"/> 
+		FROM 
+			competition a
+		WHERE 
+			competitionId = #{competitionId}
+		LIMIT 1;
+	</select>
+
+	<select id="findCompetitionListByCompetitionId" resultType="com.example.acm.entity.Competition">
+		SELECT
+		<include refid="competition_field_list_alias"/>
+		FROM 
+			competition a
+		<where>
+			<if test="competitionId != null">
+				a.competitionId = #{competitionId}
+			</if>
+		</where>
+	</select>
+	
+	<select id="findCompetition2MapListByCompetitionId" resultType="java.util.Map">
+		SELECT
+		<include refid="competition_field_list_alias"/>
+		FROM 
+			competition a
+		<where>
+			<if test="competitionId != null">
+				a.competitionId = #{competitionId}
+			</if>
+		</where>
+	</select>
+	
+	<select id="findCompetitionList" resultType="com.example.acm.entity.Competition">
+		SELECT
+		<include refid="competition_field_list_alias"/>
+		FROM 
+			competition a;		
+	</select>
+	
+	<select id="findCompetition2MapList" resultType="java.util.Map">
+		SELECT
+		<include refid="competition_field_list_alias"/>
+		FROM 
+			competition a;		
+	</select>
+	
+	<select id="countCompetitionListByQuery" resultType="java.lang.Integer">
+		SELECT
+			count(*)
+		FROM 
+			competition a
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="map.isEffective != null ">
+				AND a.isEffective=#{map.isEffective} 
+			</if>
+			<if test="map.isDone != null ">
+				AND a.isDone=#{map.isDone}
+			</if>
+		</trim>
+	</select>
+	
+	<select id="findCompetitionListByQuery" resultType="com.example.acm.entity.Competition">
+		SELECT
+		<include refid="competition_field_list_alias"/>
+		FROM 
+			competition a
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="map.isEffective != null ">
+				AND a.isEffective=#{map.isEffective} 
+			</if>
+		</trim>
+		<if test="map.order != null ">
+		ORDER BY 
+			a.${map.order} ${map.aOrS} 
+		</if>
+		<if test="map.start != null ">
+		limit #{map.start},#{map.limit}
+		</if>
+	</select>
+	
+	<select id="countCompetitionMapListByQuery" resultType="java.lang.Integer">
+		SELECT
+			count(*)
+		FROM 
+			competition a
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="map.competitionTitle != null ">
+				AND a.competitionTitle like CONCAT('%', #{map.competitionTitle}, '%')
+			</if>
+			<if test="map.isEffective != null ">
+				AND a.isEffective=#{map.isEffective}
+			</if>
+		</trim>
+	</select>
+	
+	<select id="findCompetitionMapListByQuery" resultType="java.util.Map">
+		SELECT
+		<include refid="competition_field_list_alias"/>
+		FROM 
+			competition a
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="map.competitionTitle != null ">
+				AND a.competitionTitle like CONCAT('%', #{map.competitionTitle}, '%')
+			</if>
+			<if test="map.isEffective != null ">
+				AND a.isEffective=#{map.isEffective} 
+			</if>
+		</trim>
+		<if test="map.order != null ">
+		ORDER BY 
+			a.${map.order} ${map.aOrS} 
+		</if>
+		<if test="map.start != null ">
+		limit #{map.start},#{map.limit}
+		</if>
+	</select>
+
+	<select id="findCompetitionMapListByUser" resultType="java.util.Map">
+		SELECT
+		a.*, b.*
+		FROM
+		competition a inner join applycompetition b
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			AND a.competitionId = b.competitionId
+			<if test="map.isEffective != null ">
+				AND a.isEffective=#{map.isEffective}
+				AND b.isEffective=#{map.isEffective}
+			</if>
+			<if test="map.joinUser != null ">
+				AND b.joinUser=#{map.joinUser}
+			</if>
+		</trim>
+		<if test="map.order != null ">
+			ORDER BY
+			a.${map.order} ${map.aOrS}
+		</if>
+		<if test="map.start != null ">
+			limit #{map.start},#{map.limit}
+		</if>
+	</select>
+
+
+</mapper>

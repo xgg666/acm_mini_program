@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.acm.mapper.NewClassMapper">
+
+	<resultMap type="com.example.acm.entity.NewClass" id="newClassMap">
+		<result column="newClassId" property="newClassId"/>   
+		<result column="newsId" property="newsId"/>   
+		<result column="classId" property="classId"/>   
+		<result column="createUser" property="createUser"/>   
+		<result column="createDate" property="createDate"/>   
+		<result column="updateUser" property="updateUser"/>   
+		<result column="updateDate" property="updateDate"/>   
+		<result column="isEffective" property="isEffective"/>   
+	</resultMap>
+
+	<sql id="newClass_field_list_alias">
+		a.newClassId,
+		a.newsId,
+		a.classId,
+		a.createUser,
+		a.createDate,
+		a.updateUser,
+		a.updateDate,
+		a.isEffective
+	</sql>
+
+	<insert id="addNewClass" useGeneratedKeys="true">
+		INSERT INTO newclass
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="newClass.newClassId != null">newClassId,</if>
+			<if test="newClass.newsId != null">newsId,</if>
+			<if test="newClass.classId != null">classId,</if>
+			<if test="newClass.createUser != null">createUser,</if>
+			<if test="newClass.createDate != null">createDate,</if>
+			<if test="newClass.updateUser != null">updateUser,</if>
+			<if test="newClass.updateDate != null">updateDate,</if>
+			<if test="newClass.isEffective != null">isEffective,</if>
+		</trim>
+		values
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="newClass.newClassId != null">#{newClass.newClassId},</if>
+			<if test="newClass.newsId != null">#{newClass.newsId},</if>
+			<if test="newClass.classId != null">#{newClass.classId},</if>
+			<if test="newClass.createUser != null">#{newClass.createUser},</if>
+			<if test="newClass.createDate != null">#{newClass.createDate},</if>
+			<if test="newClass.updateUser != null">#{newClass.updateUser},</if>
+			<if test="newClass.updateDate != null">#{newClass.updateDate},</if>
+			<if test="newClass.isEffective != null">#{newClass.isEffective},</if>
+		</trim>
+	</insert>
+	
+	<insert id="addNewClassList" parameterType="com.example.acm.entity.NewClass">
+		INSERT INTO newclass
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			newClassId,
+			newsId,
+			classId,
+			createUser,
+			createDate,
+			updateUser,
+			updateDate,
+			isEffective,
+		</trim>
+		values
+		<foreach collection="list" item="item" index="index" separator=",">
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			#{item.newClassId},
+			#{item.newsId},
+			#{item.classId},
+			#{item.createUser},
+			#{item.createDate},
+			#{item.updateUser},
+			#{item.updateDate},
+			#{item.isEffective},
+		</trim>
+		</foreach>
+		ON DUPLICATE KEY UPDATE 
+		<trim prefix="" suffix="" suffixOverrides=",">
+				newClassId = VALUES (newClassId),
+		</trim>
+	</insert>
+	
+	<delete id="deleteNewClassByNewClassId">
+		DELETE FROM newclass WHERE newClassId = #{newClassId};
+	</delete>
+
+	<update id="updateNewClassByNewClassId">
+		UPDATE newclass
+		<set>
+			<if test="newClass.newClassId != null">newClassId=#{newClass.newClassId},</if>
+			<if test="newClass.newsId != null">newsId=#{newClass.newsId},</if>
+			<if test="newClass.classId != null">classId=#{newClass.classId},</if>
+			<if test="newClass.createUser != null">createUser=#{newClass.createUser},</if>
+			<if test="newClass.createDate != null">createDate=#{newClass.createDate},</if>
+			<if test="newClass.updateUser != null">updateUser=#{newClass.updateUser},</if>
+			<if test="newClass.updateDate != null">updateDate=#{newClass.updateDate},</if>
+			<if test="newClass.isEffective != null">isEffective=#{newClass.isEffective},</if>
+		</set>
+		WHERE newClassId = #{newClassId};	
+	</update>
+	
+	<select id="getNewClassByNewClassId" resultType="com.example.acm.entity.NewClass">
+		SELECT 
+			<include refid="newClass_field_list_alias"/> 
+		FROM
+			newclass a
+		WHERE 
+			newClassId = #{newClassId}
+		LIMIT 1;
+	</select>
+
+	<select id="findNewClassListByNewClassId" resultType="com.example.acm.entity.NewClass">
+		SELECT
+		<include refid="newClass_field_list_alias"/>
+		FROM 
+			newclass a
+		<where>
+			<if test="newClassId != null">
+				a.newClassId = #{newClassId}
+			</if>
+		</where>
+	</select>
+	
+	<select id="findNewClass2MapListByNewClassId" resultType="java.util.Map">
+		SELECT
+		<include refid="newClass_field_list_alias"/>
+		FROM 
+			newclass a
+		<where>
+			<if test="newClassId != null">
+				a.newClassId = #{newClassId}
+			</if>
+		</where>
+	</select>
+	
+	<select id="findNewClassList" resultType="com.example.acm.entity.NewClass">
+		SELECT
+		<include refid="newClass_field_list_alias"/>
+		FROM 
+			newclass a;
+	</select>
+	
+	<select id="findNewClass2MapList" resultType="java.util.Map">
+		SELECT
+		<include refid="newClass_field_list_alias"/>
+		FROM 
+			newclass a;
+	</select>
+	
+	<select id="countNewClassListByQuery" resultType="java.lang.Integer">
+		SELECT
+			count(*)
+		FROM 
+			newclass a
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="map.isEffective != null ">
+				AND a.isEffective=#{map.isEffective} 
+			</if>
+		</trim>
+	</select>
+	
+	<select id="findNewClassListByQuery" resultType="com.example.acm.entity.NewClass">
+		SELECT
+		<include refid="newClass_field_list_alias"/>
+		FROM 
+			newclass a
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="map.isEffective != null ">
+				AND a.isEffective=#{map.isEffective} 
+			</if>
+			<if test="map.newsId != null ">
+				AND a.newsId=#{map.newsId}
+			</if>
+			<if test="map.classId != null ">
+				AND a.classId=#{map.classId}
+			</if>
+		</trim>
+		<if test="map.order != null ">
+		ORDER BY 
+			a.${map.order} ${map.aOrS} 
+		</if>
+		<if test="map.start != null ">
+		limit #{map.start},#{map.limit}
+		</if>
+	</select>
+	
+	<select id="countNewClassMapListByQuery" resultType="java.lang.Integer">
+		SELECT
+			count(*)
+		FROM 
+			newclass a
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="map.isEffective != null ">
+				AND a.isEffective=#{map.isEffective} 
+			</if>
+		</trim>
+	</select>
+	
+	<select id="findNewClassMapListByQuery" resultType="java.util.Map">
+		SELECT
+		<include refid="newClass_field_list_alias"/>
+		FROM 
+			newclass a
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="map.isEffective != null ">
+				AND a.isEffective=#{map.isEffective} 
+			</if>
+		</trim>
+		<if test="map.order != null ">
+		ORDER BY 
+			a.${map.order} ${map.aOrS} 
+		</if>
+		<if test="map.start != null ">
+		limit #{map.start},#{map.limit}
+		</if>
+	</select>
+	
+</mapper>

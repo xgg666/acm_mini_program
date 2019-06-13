@@ -1,0 +1,2 @@
+2019-05-25 14:10:14.105 ERROR --- [http-nio-9999-exec-1] com.example.acm.conf.MyControllerAdvice Line:25  - /userLogin/updateUserInfo--Required String parameter 'username' is not present
+2019-05-25 18:39:32.985 ERROR --- [http-nio-9999-exec-8] com.example.acm.conf.MyControllerAdvice Line:25  - /userLogin/userInfo--Failed to convert value of type 'java.lang.String' to required type 'int'; nested exception is java.lang.NumberFormatException: For input string: ":5"

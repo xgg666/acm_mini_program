@@ -1,0 +1,4 @@
+2019-05-23 18:05:57.838 ERROR --- [http-nio-9999-exec-8] com.example.acm.conf.MyControllerAdvice Line:25  - /userLogin/userInfo--Required int parameter 'userId' is not present
+2019-05-23 21:58:40.732 ERROR --- [http-nio-9999-exec-2] com.example.acm.conf.MyControllerAdvice Line:25  - /userLogin/deleteUser--Failed to convert value of type 'java.lang.String' to required type 'int'; nested exception is java.lang.NumberFormatException: For input string: "undefined"
+2019-05-23 22:05:54.767 ERROR --- [http-nio-9999-exec-5] com.example.acm.conf.MyControllerAdvice Line:25  - /userLogin/updateUserInfo--Required String parameter 'username' is not present
+2019-05-23 22:06:51.476 ERROR --- [http-nio-9999-exec-8] com.example.acm.conf.MyControllerAdvice Line:25  - /userLogin/updateUserInfo--Required String parameter 'username' is not present

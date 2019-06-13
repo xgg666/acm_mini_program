@@ -1,0 +1,57 @@
+2019-05-27 13:46:38.410 ERROR --- [http-nio-9999-exec-6] com.example.acm.conf.MyControllerAdvice Line:25  - /userLogin/changeUserAuth--Failed to convert value of type 'java.lang.String' to required type 'int'; nested exception is java.lang.NumberFormatException: For input string: "undefined"
+2019-05-27 14:18:17.889 ERROR --- [http-nio-9999-exec-3] com.example.acm.service.deal.Impl.CompetitionDealImpl Line:84  - 
+### Error querying database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.applyCompetition' doesn't exist
+### The error may exist in file [/home/xg/school_end/acmBackT/acm_program/target/classes/mapper/ApplyCompetitionMapper.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: SELECT       a.applyCompetitionId,   a.competitionId,   a.joinUser,   a.createDate,   a.isEffective      FROM     applyCompetition a    WHERE  a.competitionId=?                 AND a.isEffective=?
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.applyCompetition' doesn't exist
+; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.applyCompetition' doesn't exist
+2019-05-27 15:29:05.342 ERROR --- [http-nio-9999-exec-7] com.example.acm.conf.MyControllerAdvice Line:25  - /userLogin/getUserInfo--Request method 'GET' not supported
+2019-05-27 15:33:45.894 ERROR --- [http-nio-9999-exec-9] com.example.acm.conf.MyControllerAdvice Line:25  - /userLogin/getUserInfo--Request method 'GET' not supported
+2019-05-27 17:59:44.753 ERROR --- [http-nio-9999-exec-2] com.example.acm.conf.MyControllerAdvice Line:25  - /competition/addCompetition--Required String parameter 'competitionUntilTime' is not present
+2019-05-27 17:59:54.476 ERROR --- [http-nio-9999-exec-5] com.example.acm.conf.MyControllerAdvice Line:25  - /competition/addCompetition--Required String parameter 'competitionUntilTime' is not present
+2019-05-27 18:00:26.775 ERROR --- [http-nio-9999-exec-7] com.example.acm.conf.MyControllerAdvice Line:25  - /competition/addCompetition--Required String parameter 'competitionUntilTime' is not present
+2019-05-27 18:28:08.403 ERROR --- [http-nio-9999-exec-8] com.example.acm.conf.MyControllerAdvice Line:25  - /competition/addCompetition--Required String parameter 'competitionUntilTime' is not present
+2019-05-27 18:28:35.240 ERROR --- [http-nio-9999-exec-1] com.example.acm.conf.MyControllerAdvice Line:25  - /competition/addCompetition--Required String parameter 'competitionUntilTime' is not present
+2019-05-27 18:28:39.328 ERROR --- [http-nio-9999-exec-3] com.example.acm.conf.MyControllerAdvice Line:25  - /competition/addCompetition--Required String parameter 'competitionUntilTime' is not present
+2019-05-27 19:17:08.159 ERROR --- [http-nio-9999-exec-3] com.example.acm.service.deal.Impl.CompetitionDealImpl Line:87  - 
+### Error querying database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.applyCompetition' doesn't exist
+### The error may exist in file [/home/xg/school_end/acmBackT/acm_program/target/classes/mapper/ApplyCompetitionMapper.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: SELECT       a.applyCompetitionId,   a.competitionId,   a.joinUser,   a.createDate,   a.isEffective      FROM     applyCompetition a    WHERE  a.competitionId=?                 AND a.isEffective=?
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.applyCompetition' doesn't exist
+; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.applyCompetition' doesn't exist
+2019-05-27 19:17:11.039 ERROR --- [http-nio-9999-exec-5] com.example.acm.service.deal.Impl.CompetitionDealImpl Line:87  - 
+### Error querying database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.applyCompetition' doesn't exist
+### The error may exist in file [/home/xg/school_end/acmBackT/acm_program/target/classes/mapper/ApplyCompetitionMapper.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: SELECT       a.applyCompetitionId,   a.competitionId,   a.joinUser,   a.createDate,   a.isEffective      FROM     applyCompetition a    WHERE  a.competitionId=?                 AND a.isEffective=?
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.applyCompetition' doesn't exist
+; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.applyCompetition' doesn't exist
+2019-05-27 19:17:14.122 ERROR --- [http-nio-9999-exec-7] com.example.acm.service.deal.Impl.CompetitionDealImpl Line:87  - 
+### Error querying database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.applyCompetition' doesn't exist
+### The error may exist in file [/home/xg/school_end/acmBackT/acm_program/target/classes/mapper/ApplyCompetitionMapper.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: SELECT       a.applyCompetitionId,   a.competitionId,   a.joinUser,   a.createDate,   a.isEffective      FROM     applyCompetition a    WHERE  a.competitionId=?                 AND a.isEffective=?
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.applyCompetition' doesn't exist
+; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.applyCompetition' doesn't exist
+2019-05-27 19:22:35.369 ERROR --- [http-nio-9999-exec-1] com.example.acm.service.deal.Impl.CompetitionDealImpl Line:87  - 
+### Error querying database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.applyCompetition' doesn't exist
+### The error may exist in file [/home/xg/school_end/acmBackT/acm_program/target/classes/mapper/ApplyCompetitionMapper.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: SELECT       a.applyCompetitionId,   a.competitionId,   a.joinUser,   a.createDate,   a.isEffective      FROM     applyCompetition a    WHERE  a.competitionId=?                 AND a.isEffective=?
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.applyCompetition' doesn't exist
+; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.applyCompetition' doesn't exist
+2019-05-27 19:29:00.365 ERROR --- [http-nio-9999-exec-7] com.example.acm.service.deal.Impl.CompetitionDealImpl Line:87  - 
+### Error querying database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.applyCompetition' doesn't exist
+### The error may exist in file [/home/xg/school_end/acmBackT/acm_program/target/classes/mapper/ApplyCompetitionMapper.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: SELECT       a.applyCompetitionId,   a.competitionId,   a.joinUser,   a.createDate,   a.isEffective      FROM     applyCompetition a    WHERE  a.competitionId=?                 AND a.isEffective=?
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.applyCompetition' doesn't exist
+; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.applyCompetition' doesn't exist

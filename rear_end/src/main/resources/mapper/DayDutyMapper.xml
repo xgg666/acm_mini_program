@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.acm.mapper.DayDutyMapper">
+
+	<resultMap type="com.example.acm.entity.DayDuty" id="dayDutyMap">
+		<result column="dayDutyId" property="dayDutyId"/>   
+		<result column="dayName" property="dayName"/>   
+		<result column="dutyUserNames" property="dutyUserNames"/>   
+		<result column="createUser" property="createUser"/>   
+		<result column="createDate" property="createDate"/>   
+		<result column="updateUser" property="updateUser"/>   
+		<result column="updateData" property="updateData"/>   
+		<result column="isEffective" property="isEffective"/>   
+	</resultMap>
+
+	<sql id="dayDuty_field_list_alias">
+		a.dayDutyId,
+		a.dayName,
+		a.dutyUserNames,
+		a.createUser,
+		a.createDate,
+		a.updateUser,
+		a.updateData,
+		a.isEffective
+	</sql>
+
+	<insert id="addDayDuty" useGeneratedKeys="true">
+		INSERT INTO dayduty
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="dayDuty.dayDutyId != null">dayDutyId,</if>
+			<if test="dayDuty.dayName != null">dayName,</if>
+			<if test="dayDuty.dutyUserNames != null">dutyUserNames,</if>
+			<if test="dayDuty.createUser != null">createUser,</if>
+			<if test="dayDuty.createDate != null">createDate,</if>
+			<if test="dayDuty.updateUser != null">updateUser,</if>
+			<if test="dayDuty.updateData != null">updateData,</if>
+			<if test="dayDuty.isEffective != null">isEffective,</if>
+		</trim>
+		values
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="dayDuty.dayDutyId != null">#{dayDuty.dayDutyId},</if>
+			<if test="dayDuty.dayName != null">#{dayDuty.dayName},</if>
+			<if test="dayDuty.dutyUserNames != null">#{dayDuty.dutyUserNames},</if>
+			<if test="dayDuty.createUser != null">#{dayDuty.createUser},</if>
+			<if test="dayDuty.createDate != null">#{dayDuty.createDate},</if>
+			<if test="dayDuty.updateUser != null">#{dayDuty.updateUser},</if>
+			<if test="dayDuty.updateData != null">#{dayDuty.updateData},</if>
+			<if test="dayDuty.isEffective != null">#{dayDuty.isEffective},</if>
+		</trim>
+	</insert>
+	
+	<insert id="addDayDutyList" parameterType="com.example.acm.entity.DayDuty">
+		INSERT INTO dayduty
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			dayDutyId,
+			dayName,
+			dutyUserNames,
+			createUser,
+			createDate,
+			updateUser,
+			updateData,
+			isEffective,
+		</trim>
+		values
+		<foreach collection="list" item="item" index="index" separator=",">
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			#{item.dayDutyId},
+			#{item.dayName},
+			#{item.dutyUserNames},
+			#{item.createUser},
+			#{item.createDate},
+			#{item.updateUser},
+			#{item.updateData},
+			#{item.isEffective},
+		</trim>
+		</foreach>
+		ON DUPLICATE KEY UPDATE 
+		<trim prefix="" suffix="" suffixOverrides=",">
+				dayDutyId = VALUES (dayDutyId),
+		</trim>
+	</insert>
+	
+	<delete id="deleteDayDutyByDayDutyId">
+		DELETE FROM dayDuty WHERE dayDutyId = #{dayDutyId};
+	</delete>
+
+	<update id="updateDayDutyByDayDutyId">
+		UPDATE dayduty
+		<set>
+			<if test="dayDuty.dayDutyId != null">dayDutyId=#{dayDuty.dayDutyId},</if>
+			<if test="dayDuty.dayName != null">dayName=#{dayDuty.dayName},</if>
+			<if test="dayDuty.dutyUserNames != null">dutyUserNames=#{dayDuty.dutyUserNames},</if>
+			<if test="dayDuty.createUser != null">createUser=#{dayDuty.createUser},</if>
+			<if test="dayDuty.createDate != null">createDate=#{dayDuty.createDate},</if>
+			<if test="dayDuty.updateUser != null">updateUser=#{dayDuty.updateUser},</if>
+			<if test="dayDuty.updateData != null">updateData=#{dayDuty.updateData},</if>
+			<if test="dayDuty.isEffective != null">isEffective=#{dayDuty.isEffective},</if>
+		</set>
+		WHERE dayDutyId = #{dayDutyId};
+	</update>
+	
+	<select id="getDayDutyByDayDutyId" resultType="com.example.acm.entity.DayDuty">
+		SELECT 
+			<include refid="dayDuty_field_list_alias"/> 
+		FROM 
+			dayduty a
+		WHERE 
+			dayDutyId = #{dayDutyId}
+		LIMIT 1;
+	</select>
+
+	<select id="findDayDutyListByDayDutyId" resultType="com.example.acm.entity.DayDuty">
+		SELECT
+		<include refid="dayDuty_field_list_alias"/>
+		FROM 
+			dayduty a
+		<where>
+			<if test="dayDutyId != null">
+				a.dayDutyId = #{dayDutyId}
+			</if>
+		</where>
+	</select>
+	
+	<select id="findDayDuty2MapListByDayDutyId" resultType="java.util.Map">
+		SELECT
+		<include refid="dayDuty_field_list_alias"/>
+		FROM 
+			dayduty a
+		<where>
+			<if test="dayDutyId != null">
+				a.dayDutyId = #{dayDutyId}
+			</if>
+		</where>
+	</select>
+	
+	<select id="findDayDutyList" resultType="com.example.acm.entity.DayDuty">
+		SELECT
+		<include refid="dayDuty_field_list_alias"/>
+		FROM 
+			dayduty a;
+	</select>
+	
+	<select id="findDayDuty2MapList" resultType="java.util.Map">
+		SELECT
+		<include refid="dayDuty_field_list_alias"/>
+		FROM
+			dayduty a;
+	</select>
+	
+	<select id="countDayDutyListByQuery" resultType="java.lang.Integer">
+		SELECT
+			count(*)
+		FROM 
+			dayduty a
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="map.isEffective != null ">
+				AND a.isEffective=#{map.isEffective} 
+			</if>
+		</trim>
+	</select>
+	
+	<select id="findDayDutyListByQuery" resultType="com.example.acm.entity.DayDuty">
+		SELECT
+		<include refid="dayDuty_field_list_alias"/>
+		FROM 
+			dayduty a
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="map.isEffective != null ">
+				AND a.isEffective=#{map.isEffective} 
+			</if>
+		</trim>
+		<if test="map.order != null ">
+		ORDER BY 
+			a.${map.order} ${map.aOrS} 
+		</if>
+		<if test="map.start != null ">
+		limit #{map.start},#{map.limit}
+		</if>
+	</select>
+	
+	<select id="countDayDutyMapListByQuery" resultType="java.lang.Integer">
+		SELECT
+			count(*)
+		FROM 
+			dayduty a
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="map.isEffective != null ">
+				AND a.isEffective=#{map.isEffective} 
+			</if>
+		</trim>
+	</select>
+	
+	<select id="findDayDutyMapListByQuery" resultType="java.util.Map">
+		SELECT
+		<include refid="dayDuty_field_list_alias"/>
+		FROM 
+			dayduty a
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="map.isEffective != null ">
+				AND a.isEffective=#{map.isEffective} 
+			</if>
+		</trim>
+		<if test="map.order != null ">
+		ORDER BY 
+			a.${map.order} ${map.aOrS} 
+		</if>
+		<if test="map.start != null ">
+		limit #{map.start},#{map.limit}
+		</if>
+	</select>
+	
+</mapper>

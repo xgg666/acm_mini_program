@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.acm.mapper.AnnouncementMapper">
+
+	<resultMap type="com.example.acm.entity.Announcement" id="announcementMap">
+		<result column="announceId" property="announceId"/>   
+		<result column="announceTitle" property="announceTitle"/>   
+		<result column="announceBody" property="announceBody"/>   
+		<result column="announceCreateUser" property="announceCreateUser"/>   
+		<result column="announceCreateTime" property="announceCreateTime"/>   
+		<result column="announceUpdateUser" property="announceUpdateUser"/>   
+		<result column="announceUpdateTime" property="announceUpdateTime"/>   
+		<result column="isEffective" property="isEffective"/>   
+		<result column="isFirst" property="isFirst"/>   
+		<result column="isPublic" property="isPublic"/>   
+	</resultMap>
+
+	<sql id="announcement_field_list_alias">
+		a.announceId,
+		a.announceTitle,
+		a.announceBody,
+		a.announceCreateUser,
+		a.announceCreateTime,
+		a.announceUpdateUser,
+		a.announceUpdateTime,
+		a.isEffective,
+		a.isFirst,
+		a.isPublic
+	</sql>
+
+	<insert id="addAnnouncement" useGeneratedKeys="true">
+		INSERT INTO announcement 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="announcement.announceId != null">announceId,</if>
+			<if test="announcement.announceTitle != null">announceTitle,</if>
+			<if test="announcement.announceBody != null">announceBody,</if>
+			<if test="announcement.announceCreateUser != null">announceCreateUser,</if>
+			<if test="announcement.announceCreateTime != null">announceCreateTime,</if>
+			<if test="announcement.announceUpdateUser != null">announceUpdateUser,</if>
+			<if test="announcement.announceUpdateTime != null">announceUpdateTime,</if>
+			<if test="announcement.isEffective != null">isEffective,</if>
+			<if test="announcement.isFirst != null">isFirst,</if>
+			<if test="announcement.isPublic != null">isPublic,</if>
+		</trim>
+		values
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="announcement.announceId != null">#{announcement.announceId},</if>
+			<if test="announcement.announceTitle != null">#{announcement.announceTitle},</if>
+			<if test="announcement.announceBody != null">#{announcement.announceBody},</if>
+			<if test="announcement.announceCreateUser != null">#{announcement.announceCreateUser},</if>
+			<if test="announcement.announceCreateTime != null">#{announcement.announceCreateTime},</if>
+			<if test="announcement.announceUpdateUser != null">#{announcement.announceUpdateUser},</if>
+			<if test="announcement.announceUpdateTime != null">#{announcement.announceUpdateTime},</if>
+			<if test="announcement.isEffective != null">#{announcement.isEffective},</if>
+			<if test="announcement.isFirst != null">#{announcement.isFirst},</if>
+			<if test="announcement.isPublic != null">#{announcement.isPublic},</if>
+		</trim>
+	</insert>
+	
+	<insert id="addAnnouncementList" parameterType="com.example.acm.entity.Announcement">
+		INSERT INTO announcement 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			announceId,
+			announceTitle,
+			announceBody,
+			announceCreateUser,
+			announceCreateTime,
+			announceUpdateUser,
+			announceUpdateTime,
+			isEffective,
+			isFirst,
+			isPublic,
+		</trim>
+		values
+		<foreach collection="list" item="item" index="index" separator=",">
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			#{item.announceId},
+			#{item.announceTitle},
+			#{item.announceBody},
+			#{item.announceCreateUser},
+			#{item.announceCreateTime},
+			#{item.announceUpdateUser},
+			#{item.announceUpdateTime},
+			#{item.isEffective},
+			#{item.isFirst},
+			#{item.isPublic},
+		</trim>
+		</foreach>
+		ON DUPLICATE KEY UPDATE 
+		<trim prefix="" suffix="" suffixOverrides=",">
+				announceId = VALUES (announceId),
+		</trim>
+	</insert>
+	
+	<delete id="deleteAnnouncementByAnnounceId">
+		DELETE FROM announcement WHERE announceId = #{announceId};
+	</delete>
+
+	<update id="updateAnnouncementByAnnounceId">
+		UPDATE announcement
+		<set>
+			<if test="announcement.announceId != null">announceId=#{announcement.announceId},</if>
+			<if test="announcement.announceTitle != null">announceTitle=#{announcement.announceTitle},</if>
+			<if test="announcement.announceBody != null">announceBody=#{announcement.announceBody},</if>
+			<if test="announcement.announceCreateUser != null">announceCreateUser=#{announcement.announceCreateUser},</if>
+			<if test="announcement.announceCreateTime != null">announceCreateTime=#{announcement.announceCreateTime},</if>
+			<if test="announcement.announceUpdateUser != null">announceUpdateUser=#{announcement.announceUpdateUser},</if>
+			<if test="announcement.announceUpdateTime != null">announceUpdateTime=#{announcement.announceUpdateTime},</if>
+			<if test="announcement.isEffective != null">isEffective=#{announcement.isEffective},</if>
+			<if test="announcement.isFirst != null">isFirst=#{announcement.isFirst},</if>
+			<if test="announcement.isPublic != null">isPublic=#{announcement.isPublic},</if>
+		</set>
+		WHERE announceId = #{announceId};	
+	</update>
+	
+	<select id="getAnnouncementByAnnounceId" resultType="com.example.acm.entity.Announcement">
+		SELECT 
+			<include refid="announcement_field_list_alias"/> 
+		FROM 
+			announcement a
+		WHERE 
+			announceId = #{announceId}
+		LIMIT 1;
+	</select>
+
+	<select id="findAnnouncementListByAnnounceId" resultType="com.example.acm.entity.Announcement">
+		SELECT
+		<include refid="announcement_field_list_alias"/>
+		FROM 
+			announcement a
+		<where>
+			<if test="announceId != null">
+				a.announceId = #{announceId}
+			</if>
+		</where>
+	</select>
+	
+	<select id="findAnnouncement2MapListByAnnounceId" resultType="java.util.Map">
+		SELECT
+		<include refid="announcement_field_list_alias"/>
+		FROM 
+			announcement a
+		<where>
+			<if test="announceId != null">
+				a.announceId = #{announceId}
+			</if>
+		</where>
+	</select>
+	
+	<select id="findAnnouncementList" resultType="com.example.acm.entity.Announcement">
+		SELECT
+		<include refid="announcement_field_list_alias"/>
+		FROM 
+			announcement a;		
+	</select>
+	
+	<select id="findAnnouncement2MapList" resultType="java.util.Map">
+		SELECT
+		<include refid="announcement_field_list_alias"/>
+		FROM 
+			announcement a;		
+	</select>
+	
+	<select id="countAnnouncementListByQuery" resultType="java.lang.Integer">
+		SELECT
+			count(*)
+		FROM 
+			announcement a
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="map.announceTitle != null ">
+				AND a.announceTitle like CONCAT('%', #{map.announceTitle}, '%')
+			</if>
+			<if test="map.announceCreateUser != null ">
+				AND a.announceCreateUser=#{map.announceCreateUser}
+			</if>
+			<if test="map.isEffective != null ">
+				AND a.isEffective=#{map.isEffective}
+			</if>
+			<if test="map.isFirst != null ">
+				AND a.isFirst=#{map.isFirst}
+			</if>
+			<if test="map.isPublic != null ">
+				AND a.isPublic=#{map.isPublic}
+			</if>
+		</trim>
+	</select>
+	
+	<select id="findAnnouncementListByQuery" resultType="com.example.acm.entity.Announcement">
+		SELECT
+		<include refid="announcement_field_list_alias"/>
+		FROM 
+			announcement a
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="map.announceTitle != null ">
+				AND a.announceTitle=#{map.announceTitle}
+			</if>
+			<if test="map.announceBody != null ">
+				AND a.announceBody=#{map.announceBody}
+			</if>
+			<if test="map.announceCreateTime != null ">
+				AND <![CDATA[  a.announceCreateTime=#{map.announceCreateTime}]]>
+			</if>
+			<if test="map.announceCreateUser != null ">
+				AND a.announceCreateUser=#{map.announceCreateUser}
+			</if>
+			<if test="map.isEffective != null ">
+				AND a.isEffective=#{map.isEffective} 
+			</if>
+		</trim>
+		<if test="map.order != null ">
+		ORDER BY 
+			a.${map.order} ${map.aOrS} 
+		</if>
+		<if test="map.start != null ">
+		limit #{map.start},#{map.limit}
+		</if>
+	</select>
+	
+	<select id="countAnnouncementMapListByQuery" resultType="java.lang.Integer">
+		SELECT
+			count(*)
+		FROM 
+			announcement a
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="map.isEffective != null ">
+				AND a.isEffective=#{map.isEffective} 
+			</if>
+		</trim>
+	</select>
+	
+	<select id="findAnnouncementMapListByQuery" resultType="java.util.Map">
+		SELECT
+		<include refid="announcement_field_list_alias"/>
+		FROM 
+			announcement a
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="map.announceTitle != null ">
+				AND a.announceTitle like CONCAT('%', #{map.announceTitle}, '%')
+			</if>
+			<if test="map.announceCreateUser != null ">
+				AND a.announceCreateUser=#{map.announceCreateUser}
+			</if>
+			<if test="map.isEffective != null ">
+				AND a.isEffective=#{map.isEffective} 
+			</if>
+			<if test="map.isFirst != null ">
+				AND a.isFirst=#{map.isFirst}
+			</if>
+			<if test="map.isPublic != null ">
+				AND a.isPublic=#{map.isPublic}
+			</if>
+		</trim>
+		<if test="map.order != null ">
+		ORDER BY
+			a.isFirst DESC, a.${map.order} ${map.aOrS}
+		</if>
+		<if test="map.order == null ">
+			ORDER BY
+			a.isFirst DESC
+		</if>
+		<if test="map.start != null ">
+		limit #{map.start},#{map.limit}
+		</if>
+	</select>
+	
+</mapper>

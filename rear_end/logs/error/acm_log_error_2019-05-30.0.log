@@ -1,0 +1,6 @@
+2019-05-30 15:59:44.653 ERROR --- [http-nio-9999-exec-1] com.example.acm.service.deal.Impl.CompetitionDealImpl Line:116 - Unparseable date: ""
+2019-05-30 21:13:30.710 ERROR --- [http-nio-9999-exec-4] com.example.acm.service.deal.Impl.AnnounceDealImpl Line:130 - Index: 0, Size: 0
+2019-05-30 21:13:35.286 ERROR --- [http-nio-9999-exec-10] com.example.acm.service.deal.Impl.AnnounceDealImpl Line:130 - Index: 0, Size: 0
+2019-05-30 21:14:14.225 ERROR --- [http-nio-9999-exec-9] com.example.acm.service.deal.Impl.AnnounceDealImpl Line:130 - Index: 0, Size: 0
+2019-05-30 21:50:20.422 ERROR --- [http-nio-9999-exec-6] com.example.acm.service.deal.Impl.AnnounceDealImpl Line:130 - Index: 0, Size: 0
+2019-05-30 21:53:49.274 ERROR --- [http-nio-9999-exec-2] com.example.acm.service.deal.Impl.AnnounceDealImpl Line:130 - Index: 0, Size: 0

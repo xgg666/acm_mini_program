@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.acm.mapper.AttendanceMapper">
+
+	<resultMap type="com.example.acm.entity.Attendance" id="attendanceMap">
+		<result column="attendenceId" property="attendenceId"/>   
+		<result column="createUser" property="createUser"/>   
+		<result column="createDate" property="createDate"/>   
+		<result column="sumDay" property="sumDay"/>   
+		<result column="isEffective" property="isEffectve"/>
+	</resultMap>
+
+	<sql id="attendance_field_list_alias">
+		a.attendenceId,
+		a.createUser,
+		a.createDate,
+		a.sumDay,
+		a.isEffective
+	</sql>
+
+	<insert id="addAttendance" useGeneratedKeys="true">
+		INSERT INTO attendance 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="attendance.attendenceId != null">attendenceId,</if>
+			<if test="attendance.createUser != null">createUser,</if>
+			<if test="attendance.createDate != null">createDate,</if>
+			<if test="attendance.sumDay != null">sumDay,</if>
+			<if test="attendance.isEffective != null">isEffective,</if>
+		</trim>
+		values
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="attendance.attendenceId != null">#{attendance.attendenceId},</if>
+			<if test="attendance.createUser != null">#{attendance.createUser},</if>
+			<if test="attendance.createDate != null">#{attendance.createDate},</if>
+			<if test="attendance.sumDay != null">#{attendance.sumDay},</if>
+			<if test="attendance.isEffective != null">#{attendance.isEffective},</if>
+		</trim>
+	</insert>
+	
+	<insert id="addAttendanceList" parameterType="com.example.acm.entity.Attendance">
+		INSERT INTO attendance 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			attendenceId,
+			createUser,
+			createDate,
+			sumDay,
+			isEffective,
+		</trim>
+		values
+		<foreach collection="list" item="item" index="index" separator=",">
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			#{item.attendenceId},
+			#{item.createUser},
+			#{item.createDate},
+			#{item.sumDay},
+			#{item.isEffective},
+		</trim>
+		</foreach>
+		ON DUPLICATE KEY UPDATE 
+		<trim prefix="" suffix="" suffixOverrides=",">
+				attendenceId = VALUES (attendenceId),
+		</trim>
+	</insert>
+	
+	<delete id="deleteAttendanceByAttendenceId">
+		DELETE FROM attendance WHERE attendenceId = #{attendenceId};
+	</delete>
+
+	<update id="updateAttendanceByAttendenceId">
+		UPDATE attendance
+		<set>
+			<if test="attendance.attendenceId != null">attendenceId=#{attendance.attendenceId},</if>
+			<if test="attendance.createUser != null">createUser=#{attendance.createUser},</if>
+			<if test="attendance.createDate != null">createDate=#{attendance.createDate},</if>
+			<if test="attendance.sumDay != null">sumDay=#{attendance.sumDay},</if>
+			<if test="attendance.isEffective != null">isEffectve=#{attendance.isEffective},</if>
+		</set>
+		WHERE attendenceId = #{attendenceId};	
+	</update>
+	
+	<select id="getAttendanceByAttendenceId" resultType="com.example.acm.entity.Attendance">
+		SELECT 
+			<include refid="attendance_field_list_alias"/> 
+		FROM 
+			attendance a
+		WHERE 
+			attendenceId = #{attendenceId}
+		LIMIT 1;
+	</select>
+
+	<select id="findAttendanceListByAttendenceId" resultType="com.example.acm.entity.Attendance">
+		SELECT
+		<include refid="attendance_field_list_alias"/>
+		FROM 
+			attendance a
+		<where>
+			<if test="attendenceId != null">
+				a.attendenceId = #{attendenceId}
+			</if>
+		</where>
+	</select>
+	
+	<select id="findAttendance2MapListByAttendenceId" resultType="java.util.Map">
+		SELECT
+		<include refid="attendance_field_list_alias"/>
+		FROM 
+			attendance a
+		<where>
+			<if test="attendenceId != null">
+				a.attendenceId = #{attendenceId}
+			</if>
+		</where>
+	</select>
+	
+	<select id="findAttendanceList" resultType="com.example.acm.entity.Attendance">
+		SELECT
+		<include refid="attendance_field_list_alias"/>
+		FROM 
+			attendance a;		
+	</select>
+	
+	<select id="findAttendance2MapList" resultType="java.util.Map">
+		SELECT
+		<include refid="attendance_field_list_alias"/>
+		FROM 
+			attendance a;		
+	</select>
+	
+	<select id="countAttendanceListByQuery" resultType="java.lang.Integer">
+		SELECT
+			count(*)
+		FROM 
+			attendance a
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="map.isEffective != null ">
+				AND a.isEffective=#{map.isEffective}
+			</if>
+		</trim>
+	</select>
+	
+	<select id="findAttendanceListByQuery" resultType="com.example.acm.entity.Attendance">
+		SELECT
+		<include refid="attendance_field_list_alias"/>
+		FROM 
+			attendance a
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="map.isEffective != null ">
+				AND a.isEffective=#{map.isEffective}
+			</if>
+			<if test="map.createUser != null ">
+				AND a.createUser=#{map.createUser}
+			</if>
+		</trim>
+		<if test="map.order != null ">
+		ORDER BY 
+			a.${map.order} ${map.aOrS} 
+		</if>
+		<if test="map.start != null ">
+		limit #{map.start},#{map.limit}
+		</if>
+	</select>
+	
+	<select id="countAttendanceMapListByQuery" resultType="java.lang.Integer">
+		SELECT
+			count(*)
+		FROM 
+			attendance a
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="map.isEffective != null ">
+				AND a.isEffective=#{map.isEffective} 
+			</if>
+		</trim>
+	</select>
+	
+	<select id="findAttendanceMapListByQuery" resultType="java.util.Map">
+		SELECT
+		<include refid="attendance_field_list_alias"/>
+		FROM 
+			attendance a
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="map.isEffective != null ">
+				AND a.isEffective=#{map.isEffective} 
+			</if>
+		</trim>
+		<if test="map.order != null ">
+		ORDER BY 
+			a.${map.order} ${map.aOrS} 
+		</if>
+		<if test="map.start != null ">
+		limit #{map.start},#{map.limit}
+		</if>
+	</select>
+	
+</mapper>

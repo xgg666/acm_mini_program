@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.acm.mapper.ClassificationMapper">
+
+	<resultMap type="com.example.acm.entity.Classification" id="classificationMap">
+		<result column="classId" property="classId"/>
+		<result column="className" property="className"/>
+		<result column="isEffective" property="isEffective"/>   
+		<result column="updateTime" property="updateTime"/>   
+		<result column="createTime" property="createTime"/>   
+		<result column="createBy" property="createBy"/>   
+	</resultMap>
+
+	<sql id="classification_field_list_alias">
+		a.classId,
+		a.className,
+		a.isEffective,
+		a.updateTime,
+		a.createTime,
+		a.createBy
+	</sql>
+
+	<insert id="addClassification" useGeneratedKeys="true">
+		INSERT INTO classification 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="classification.classId != null">classId,</if>
+			<if test="classification.className != null">className,</if>
+			<if test="classification.isEffective != null">isEffective,</if>
+			<if test="classification.updateTime != null">updateTime,</if>
+			<if test="classification.createTime != null">createTime,</if>
+			<if test="classification.createBy != null">createBy,</if>
+		</trim>
+		values
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="classification.classId != null">#{classification.classId},</if>
+			<if test="classification.className != null">#{classification.className},</if>
+			<if test="classification.isEffective != null">#{classification.isEffective},</if>
+			<if test="classification.updateTime != null">#{classification.updateTime},</if>
+			<if test="classification.createTime != null">#{classification.createTime},</if>
+			<if test="classification.createBy != null">#{classification.createBy},</if>
+		</trim>
+	</insert>
+	
+	<insert id="addClassificationList" parameterType="com.example.acm.entity.Classification">
+		INSERT INTO classification 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+            classId,
+            className,
+			isEffective,
+			updateTime,
+			createTime,
+			createBy,
+		</trim>
+		values
+		<foreach collection="list" item="item" index="index" separator=",">
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			#{item.classId},
+			#{item.className},
+			#{item.isEffective},
+			#{item.updateTime},
+			#{item.createTime},
+			#{item.createBy},
+		</trim>
+		</foreach>
+		ON DUPLICATE KEY UPDATE 
+		<trim prefix="" suffix="" suffixOverrides=",">
+				classId = VALUES (classId),
+		</trim>
+	</insert>
+	
+	<delete id="deleteClassificationByClassId">
+		DELETE FROM classification WHERE classId = #{classId};
+	</delete>
+
+	<update id="updateClassificationByClassId">
+		UPDATE classification
+		<set>
+			<if test="classification.classId != null">classId=#{classification.classId},</if>
+			<if test="classification.className != null">className=#{classification.className},</if>
+			<if test="classification.isEffective != null">isEffective=#{classification.isEffective},</if>
+			<if test="classification.updateTime != null">updateTime=#{classification.updateTime},</if>
+			<if test="classification.createTime != null">createTime=#{classification.createTime},</if>
+			<if test="classification.createBy != null">createBy=#{classification.createBy},</if>
+		</set>
+		WHERE classId = #{classId};	
+	</update>
+	
+	<select id="getClassificationByClassId" resultType="com.example.acm.entity.Classification">
+		SELECT 
+			<include refid="classification_field_list_alias"/> 
+		FROM 
+			classification a
+		WHERE 
+			classId = #{classId}
+		LIMIT 1;
+	</select>
+
+	<select id="findClassificationListByClassId" resultType="com.example.acm.entity.Classification">
+		SELECT
+		<include refid="classification_field_list_alias"/>
+		FROM 
+			classification a
+		<where>
+			<if test="classId != null">
+				a.classId = #{classId}
+			</if>
+		</where>
+	</select>
+	
+	<select id="findClassification2MapListByClassId" resultType="java.util.Map">
+		SELECT
+		<include refid="classification_field_list_alias"/>
+		FROM 
+			classification a
+		<where>
+			<if test="classId != null">
+				a.classId = #{classId}
+			</if>
+		</where>
+	</select>
+	
+	<select id="findClassificationList" resultType="com.example.acm.entity.Classification">
+		SELECT
+		<include refid="classification_field_list_alias"/>
+		FROM 
+			classification a;		
+	</select>
+	
+	<select id="findClassification2MapList" resultType="java.util.Map">
+		SELECT
+		<include refid="classification_field_list_alias"/>
+		FROM 
+			classification a;		
+	</select>
+	
+	<select id="countClassificationListByQuery" resultType="java.lang.Integer">
+		SELECT
+			count(*)
+		FROM 
+			classification a
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+            <if test="map.className != null ">
+                AND a.className like CONCAT('%', #{map.className}, '%')
+            </if>
+			<if test="map.isEffective != null ">
+				AND a.isEffective=#{map.isEffective} 
+			</if>
+		</trim>
+	</select>
+	
+	<select id="findClassificationListByQuery" resultType="com.example.acm.entity.Classification">
+		SELECT
+		<include refid="classification_field_list_alias"/>
+		FROM 
+			classification a
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+            <if test="map.className != null ">
+                AND a.className  = #{map.className}
+            </if>
+			<if test="map.isEffective != null ">
+				AND a.isEffective=#{map.isEffective} 
+			</if>
+		</trim>
+		<if test="map.order != null ">
+		ORDER BY 
+			a.${map.order} ${map.aOrS} 
+		</if>
+		<if test="map.start != null ">
+		limit #{map.start},#{map.limit}
+		</if>
+	</select>
+
+	<select id="findNewsClasfication" resultType="com.example.acm.entity.Classification">
+		SELECT
+		<include refid="classification_field_list_alias"/>
+		FROM
+		classification a INNER JOIN newclass b
+		where a.classId=b.classId
+			<if test="map.newsId != null ">
+				AND b.newsId  = #{map.newsId}
+			</if>
+			<if test="map.isEffective != null ">
+				AND b.isEffective=#{map.isEffective}
+			</if>
+	</select>
+	
+	<select id="countClassificationMapListByQuery" resultType="java.lang.Integer">
+		SELECT
+			count(*)
+		FROM 
+			classification a
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="map.isEffective != null ">
+				AND a.isEffective=#{map.isEffective} 
+			</if>
+		</trim>
+	</select>
+	
+	<select id="findClassificationMapListByQuery" resultType="java.util.Map">
+		SELECT
+		<include refid="classification_field_list_alias"/>
+		FROM 
+			classification a
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+            <if test="map.className != null ">
+                AND a.className like CONCAT('%', #{map.className}, '%')
+            </if>
+			<if test="map.isEffective != null ">
+				AND a.isEffective=#{map.isEffective} 
+			</if>
+		</trim>
+		<if test="map.order != null ">
+		ORDER BY 
+			a.${map.order} ${map.aOrS}
+		</if>
+		<if test="map.start != null ">
+		limit #{map.start},#{map.limit}
+		</if>
+	</select>
+	
+</mapper>

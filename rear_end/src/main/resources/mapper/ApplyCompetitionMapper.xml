@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.acm.mapper.ApplyCompetitionMapper">
+
+	<resultMap type="com.example.acm.entity.ApplyCompetition" id="applyCompetitionMap">
+		<result column="applyCompetitionId" property="applyCompetitionId"/>   
+		<result column="competitionId" property="competitionId"/>   
+		<result column="joinUser" property="joinUser"/>   
+		<result column="createDate" property="createDate"/>   
+		<result column="isEffective" property="isEffective"/>   
+	</resultMap>
+
+	<sql id="applyCompetition_field_list_alias">
+		a.applyCompetitionId,
+		a.competitionId,
+		a.joinUser,
+		a.createDate,
+		a.isEffective
+	</sql>
+
+	<insert id="addApplyCompetition" useGeneratedKeys="true">
+		INSERT INTO applycompetition
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="applyCompetition.applyCompetitionId != null">applyCompetitionId,</if>
+			<if test="applyCompetition.competitionId != null">competitionId,</if>
+			<if test="applyCompetition.joinUser != null">joinUser,</if>
+			<if test="applyCompetition.createDate != null">createDate,</if>
+			<if test="applyCompetition.isEffective != null">isEffective,</if>
+		</trim>
+		values
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="applyCompetition.applyCompetitionId != null">#{applyCompetition.applyCompetitionId},</if>
+			<if test="applyCompetition.competitionId != null">#{applyCompetition.competitionId},</if>
+			<if test="applyCompetition.joinUser != null">#{applyCompetition.joinUser},</if>
+			<if test="applyCompetition.createDate != null">#{applyCompetition.createDate},</if>
+			<if test="applyCompetition.isEffective != null">#{applyCompetition.isEffective},</if>
+		</trim>
+	</insert>
+	
+	<insert id="addApplyCompetitionList" parameterType="com.example.acm.entity.ApplyCompetition">
+		INSERT INTO applycompetition
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			applyCompetitionId,
+			competitionId,
+			joinUser,
+			createDate,
+			isEffective,
+		</trim>
+		values
+		<foreach collection="list" item="item" index="index" separator=",">
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			#{item.applyCompetitionId},
+			#{item.competitionId},
+			#{item.joinUser},
+			#{item.createDate},
+			#{item.isEffective},
+		</trim>
+		</foreach>
+		ON DUPLICATE KEY UPDATE 
+		<trim prefix="" suffix="" suffixOverrides=",">
+				applyCompetitionId = VALUES (applyCompetitionId),
+		</trim>
+	</insert>
+	
+	<delete id="deleteApplyCompetitionByApplyCompetitionId">
+		DELETE FROM applycompetition WHERE applyCompetitionId = #{applyCompetitionId};
+	</delete>
+
+	<update id="updateApplyCompetitionByApplyCompetitionId">
+		UPDATE applycompetition
+		<set>
+			<if test="applyCompetition.applyCompetitionId != null">applyCompetitionId=#{applyCompetition.applyCompetitionId},</if>
+			<if test="applyCompetition.competitionId != null">competitionId=#{applyCompetition.competitionId},</if>
+			<if test="applyCompetition.joinUser != null">joinUser=#{applyCompetition.joinUser},</if>
+			<if test="applyCompetition.createDate != null">createDate=#{applyCompetition.createDate},</if>
+			<if test="applyCompetition.isEffective != null">isEffective=#{applyCompetition.isEffective},</if>
+		</set>
+		WHERE applyCompetitionId = #{applyCompetitionId};	
+	</update>
+	
+	<select id="getApplyCompetitionByApplyCompetitionId" resultType="com.example.acm.entity.ApplyCompetition">
+		SELECT 
+			<include refid="applyCompetition_field_list_alias"/> 
+		FROM
+			applycompetition a
+		WHERE 
+			applyCompetitionId = #{applyCompetitionId}
+		LIMIT 1;
+	</select>
+
+	<select id="findApplyCompetitionListByApplyCompetitionId" resultType="com.example.acm.entity.ApplyCompetition">
+		SELECT
+		<include refid="applyCompetition_field_list_alias"/>
+		FROM
+			applycompetition a
+		<where>
+			<if test="applyCompetitionId != null">
+				a.applyCompetitionId = #{applyCompetitionId}
+			</if>
+		</where>
+	</select>
+	
+	<select id="findApplyCompetitionListByCompetitionId" resultType="com.example.acm.entity.ApplyCompetition">
+		SELECT
+		<include refid="applyCompetition_field_list_alias"/>
+		FROM
+			applycompetition a
+		<where>
+			<if test="competitionId != null">
+				a.competitionId = #{competitionId}
+			</if>
+		</where>
+	</select>
+	
+	<select id="findApplyCompetition2MapListByApplyCompetitionId" resultType="java.util.Map">
+		SELECT
+		<include refid="applyCompetition_field_list_alias"/>
+		FROM
+			applycompetition a
+		<where>
+			<if test="applyCompetitionId != null">
+				a.applyCompetitionId = #{applyCompetitionId}
+			</if>
+		</where>
+	</select>
+	
+	<select id="findApplyCompetition2MapListByCompetitionId" resultType="java.util.Map">
+		SELECT
+		<include refid="applyCompetition_field_list_alias"/>
+		FROM
+			applycompetition a
+		<where>
+			<if test="competitionId != null">
+				a.competitionId = #{competitionId}
+			</if>
+		</where>
+	</select>
+	
+	<select id="findApplyCompetitionList" resultType="com.example.acm.entity.ApplyCompetition">
+		SELECT
+		<include refid="applyCompetition_field_list_alias"/>
+		FROM
+			applycompetition a;
+	</select>
+	
+	<select id="findApplyCompetition2MapList" resultType="java.util.Map">
+		SELECT
+		<include refid="applyCompetition_field_list_alias"/>
+		FROM
+			applycompetition a;
+	</select>
+	
+	<select id="countApplyCompetitionListByQuery" resultType="java.lang.Integer">
+		SELECT
+			count(*)
+		FROM
+			applycompetition a
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="map.isEffective != null ">
+				AND a.isEffective=#{map.isEffective} 
+			</if>
+		</trim>
+	</select>
+	
+	<select id="findApplyCompetitionListByQuery" resultType="com.example.acm.entity.ApplyCompetition">
+		SELECT
+		<include refid="applyCompetition_field_list_alias"/>
+		FROM
+			applycompetition a
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="map.competitionId != null ">
+				AND a.competitionId=#{map.competitionId}
+			</if>
+			<if test="map.joinUser != null ">
+				AND a.joinUser=#{map.joinUser}
+			</if>
+			<if test="map.isEffective != null ">
+				AND a.isEffective=#{map.isEffective} 
+			</if>
+		</trim>
+		<if test="map.order != null ">
+		ORDER BY 
+			a.${map.order} ${map.aOrS} 
+		</if>
+		<if test="map.start != null ">
+		limit #{map.start},#{map.limit}
+		</if>
+	</select>
+	
+	<select id="countApplyCompetitionMapListByQuery" resultType="java.lang.Integer">
+		SELECT
+			count(*)
+		FROM
+			applycompetition a
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="map.isEffective != null ">
+				AND a.isEffective=#{map.isEffective} 
+			</if>
+			<if test="map.joinUser != null ">
+				AND a.joinUser=#{map.joinUser}
+			</if>
+		</trim>
+	</select>
+	
+	<select id="findApplyCompetitionMapListByQuery" resultType="java.util.Map">
+		SELECT
+		<include refid="applyCompetition_field_list_alias"/>
+		FROM
+			applycompetition a
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="map.isEffective != null ">
+				AND a.isEffective=#{map.isEffective} 
+			</if>
+			<if test="map.joinUser != null ">
+				AND a.joinUser=#{map.joinUser}
+			</if>
+		</trim>
+		<if test="map.order != null ">
+		ORDER BY 
+			a.${map.order} ${map.aOrS} 
+		</if>
+		<if test="map.start != null ">
+		limit #{map.start},#{map.limit}
+		</if>
+	</select>
+	
+</mapper>

@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.acm.mapper.NewsMapper">
+
+	<resultMap type="com.example.acm.entity.News" id="newsMap">
+		<result column="newsId" property="newsId"/>   
+		<result column="newsTitle" property="newsTitle"/>   
+		<result column="newsBody" property="newsBody"/>   
+		<result column="createUser" property="createUser"/>   
+		<result column="createDate" property="createDate"/>   
+		<result column="updateUser" property="updateUser"/>   
+		<result column="updateDate" property="updateDate"/>   
+		<result column="isPublic" property="isPublic"/>   
+		<result column="isEffective" property="isEffective"/>   
+	</resultMap>
+
+	<sql id="news_field_list_alias">
+		a.newsId,
+		a.newsTitle,
+		a.newsBody,
+		a.createUser,
+		a.createDate,
+		a.updateUser,
+		a.updateDate,
+		a.isPublic,
+		a.isEffective
+	</sql>
+
+	<insert id="addNews" useGeneratedKeys="true">
+		INSERT INTO news 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="news.newsId != null">newsId,</if>
+			<if test="news.newsTitle != null">newsTitle,</if>
+			<if test="news.newsBody != null">newsBody,</if>
+			<if test="news.createUser != null">createUser,</if>
+			<if test="news.createDate != null">createDate,</if>
+			<if test="news.updateUser != null">updateUser,</if>
+			<if test="news.updateDate != null">updateDate,</if>
+			<if test="news.isPublic != null">isPublic,</if>
+			<if test="news.isEffective != null">isEffective,</if>
+		</trim>
+		values
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="news.newsId != null">#{news.newsId},</if>
+			<if test="news.newsTitle != null">#{news.newsTitle},</if>
+			<if test="news.newsBody != null">#{news.newsBody},</if>
+			<if test="news.createUser != null">#{news.createUser},</if>
+			<if test="news.createDate != null">#{news.createDate},</if>
+			<if test="news.updateUser != null">#{news.updateUser},</if>
+			<if test="news.updateDate != null">#{news.updateDate},</if>
+			<if test="news.isPublic != null">#{news.isPublic},</if>
+			<if test="news.isEffective != null">#{news.isEffective},</if>
+		</trim>
+	</insert>
+	
+	<insert id="addNewsList" parameterType="com.example.acm.entity.News">
+		INSERT INTO news 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			newsId,
+			newsTitle,
+			newsBody,
+			createUser,
+			createDate,
+			updateUser,
+			updateDate,
+			isPublic,
+			isEffective,
+		</trim>
+		values
+		<foreach collection="list" item="item" index="index" separator=",">
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			#{item.newsId},
+			#{item.newsTitle},
+			#{item.newsBody},
+			#{item.createUser},
+			#{item.createDate},
+			#{item.updateUser},
+			#{item.updateDate},
+			#{item.isPublic},
+			#{item.isEffective},
+		</trim>
+		</foreach>
+		ON DUPLICATE KEY UPDATE 
+		<trim prefix="" suffix="" suffixOverrides=",">
+				newsId = VALUES (newsId),
+		</trim>
+	</insert>
+	
+	<delete id="deleteNewsByNewsId">
+		DELETE FROM news WHERE newsId = #{newsId};
+	</delete>
+
+	<update id="updateNewsByNewsId">
+		UPDATE news
+		<set>
+			<if test="news.newsId != null">newsId=#{news.newsId},</if>
+			<if test="news.newsTitle != null">newsTitle=#{news.newsTitle},</if>
+			<if test="news.newsBody != null">newsBody=#{news.newsBody},</if>
+			<if test="news.createUser != null">createUser=#{news.createUser},</if>
+			<if test="news.createDate != null">createDate=#{news.createDate},</if>
+			<if test="news.updateUser != null">updateUser=#{news.updateUser},</if>
+			<if test="news.updateDate != null">updateDate=#{news.updateDate},</if>
+			<if test="news.isPublic != null">isPublic=#{news.isPublic},</if>
+			<if test="news.isEffective != null">isEffective=#{news.isEffective},</if>
+		</set>
+		WHERE newsId = #{newsId};	
+	</update>
+	
+	<select id="getNewsByNewsId" resultType="com.example.acm.entity.News">
+		SELECT 
+			<include refid="news_field_list_alias"/> 
+		FROM 
+			news a
+		WHERE 
+			newsId = #{newsId}
+		LIMIT 1;
+	</select>
+
+	<select id="findNewsListByNewsId" resultType="com.example.acm.entity.News">
+		SELECT
+		<include refid="news_field_list_alias"/>
+		FROM 
+			news a
+		<where>
+			<if test="newsId != null">
+				a.newsId = #{newsId}
+			</if>
+			AND a.isEffective=1
+		</where>
+	</select>
+	
+	<select id="findNews2MapListByNewsId" resultType="java.util.Map">
+		SELECT
+		<include refid="news_field_list_alias"/>
+		FROM 
+			news a
+		<where>
+			<if test="newsId != null">
+				a.newsId = #{newsId}
+			</if>
+			AND a.isEffective=1
+		</where>
+	</select>
+	
+	<select id="findNewsList" resultType="com.example.acm.entity.News">
+		SELECT
+		<include refid="news_field_list_alias"/>
+		FROM 
+			news a;		
+	</select>
+	
+	<select id="findNews2MapList" resultType="java.util.Map">
+		SELECT
+		<include refid="news_field_list_alias"/>
+		FROM 
+			news a;		
+	</select>
+	
+	<select id="countNewsListByQuery" resultType="java.lang.Integer">
+		SELECT
+			count(*)
+		FROM 
+			news a
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="map.newsTitle != null">
+				AND a.newsTitle like CONCAT('%', #{map.newsTitle} ,'%')
+			</if>
+			<if test="map.newsBody != null">
+				AND a.newsBody = #{map.newsBody}
+			</if>
+			<if test="map.createUser != null">
+				AND a.createUser = #{map.createUser}
+			</if>
+			<if test="map.createDate != null">
+				AND a.createDate = #{map.createDate}
+			</if>
+			<if test="map.isEffective != null ">
+				AND a.isEffective=#{map.isEffective}
+			</if>
+		</trim>
+	</select>
+	
+	<select id="findNewsListByQuery" resultType="com.example.acm.entity.News">
+		SELECT
+		<include refid="news_field_list_alias"/>
+		FROM 
+			news a
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="map.newsTitle != null">
+				AND a.newsTitle = #{map.newsTitle}
+			</if>
+			<if test="map.newsBody != null">
+				AND a.newsBody = #{map.newsBody}
+			</if>
+			<if test="map.createUser != null">
+				AND a.createUser = #{map.createUser}
+			</if>
+			<if test="map.createDate != null">
+				AND a.createDate = #{map.createDate}
+			</if>
+			<if test="map.isEffective != null ">
+				AND a.isEffective=#{map.isEffective} 
+			</if>
+			<if test="map.isPublic != null ">
+				AND a.isPublic=#{map.isPublic}
+			</if>
+		</trim>
+		<if test="map.order != null ">
+		ORDER BY 
+			a.${map.order} ${map.aOrS} 
+		</if>
+		<if test="map.start != null ">
+		limit #{map.start},#{map.limit}
+		</if>
+	</select>
+	
+	<select id="countNewsMapListByQuery" resultType="java.lang.Integer">
+		SELECT
+			count(*)
+		FROM 
+			news a
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="map.isEffective != null ">
+				AND a.isEffective=#{map.isEffective} 
+			</if>
+		</trim>
+	</select>
+	
+	<select id="findNewsMapListByQuery" resultType="java.util.Map">
+		SELECT
+		<include refid="news_field_list_alias"/>
+		FROM 
+			news a
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="map.newsTitle != null">
+				AND a.newsTitle like CONCAT('%', #{map.newsTitle} ,'%')
+			</if>
+			<if test="map.newsBody != null">
+				AND a.newsBody = #{map.newsBody}
+			</if>
+			<if test="map.createUser != null">
+				AND a.createUser = #{map.createUser}
+			</if>
+			<if test="map.createDate != null">
+				AND a.createDate = #{map.createDate}
+			</if>
+			<if test="map.isEffective != null ">
+				AND a.isEffective=#{map.isEffective}
+			</if>
+			<if test="map.isPublic != null ">
+				AND a.isPublic=#{map.isPublic}
+			</if>
+		</trim>
+		<if test="map.order != null ">
+		ORDER BY 
+			a.${map.order} ${map.aOrS} 
+		</if>
+		<if test="map.start != null ">
+		limit #{map.start},#{map.limit}
+		</if>
+	</select>
+	
+</mapper>

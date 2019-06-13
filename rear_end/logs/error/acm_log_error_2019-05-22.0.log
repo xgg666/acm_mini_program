@@ -1,0 +1,6 @@
+2019-05-22 14:02:10.452 ERROR --- [http-nio-9999-exec-10] com.example.acm.conf.MyControllerAdvice Line:25  - /impression/deleteImpression--Required long parameter 'impressionId' is not present
+2019-05-22 14:02:55.390 ERROR --- [http-nio-9999-exec-2] com.example.acm.conf.MyControllerAdvice Line:25  - /impression/deleteImpression--Required long parameter 'impressionId' is not present
+2019-05-22 14:03:32.583 ERROR --- [http-nio-9999-exec-4] com.example.acm.conf.MyControllerAdvice Line:25  - /impression/deleteImpression--Required long parameter 'impressionId' is not present
+2019-05-22 14:04:26.790 ERROR --- [http-nio-9999-exec-5] com.example.acm.conf.MyControllerAdvice Line:25  - /impression/deleteImpression--Required long parameter 'impressionId' is not present
+2019-05-22 14:50:59.150 ERROR --- [http-nio-9999-exec-10] com.example.acm.conf.MyControllerAdvice Line:25  - /impression/updateImpression--Required int parameter 'impressionId' is not present
+2019-05-22 14:51:33.865 ERROR --- [http-nio-9999-exec-1] com.example.acm.conf.MyControllerAdvice Line:25  - /impression/updateImpression--Failed to convert value of type 'java.lang.String' to required type 'int'; nested exception is java.lang.NumberFormatException: For input string: "undefined"

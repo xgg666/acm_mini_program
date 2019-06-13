@@ -1,0 +1,168 @@
+2019-04-18 11:21:06.306 ERROR --- [http-nio-9999-exec-3] com.example.acm.service.deal.Impl.DayDutyDealImpl Line:43  - 
+### Error querying database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.dayDuty' doesn't exist
+### The error may exist in file [/home/xg/school_end/acmBackT/acm_program/target/classes/mapper/DayDutyMapper.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: SELECT       a.dayDutyId,   a.dayName,   a.dutyUserNames,   a.createUser,   a.createDate,   a.updateUser,   a.updateData,   a.isEffective      FROM     dayDuty a;
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.dayDuty' doesn't exist
+; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.dayDuty' doesn't exist
+2019-04-18 13:47:22.744 ERROR --- [http-nio-9999-exec-3] com.example.acm.conf.MyControllerAdvice Line:25  - /info/getIndexInfo--
+### Error querying database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.dayDuty' doesn't exist
+### The error may exist in file [/home/xg/school_end/acmBackT/acm_program/target/classes/mapper/DayDutyMapper.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: SELECT       a.dayDutyId,   a.dayName,   a.dutyUserNames,   a.createUser,   a.createDate,   a.updateUser,   a.updateData,   a.isEffective      FROM     dayDuty a    WHERE a.dayDutyId = ?
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.dayDuty' doesn't exist
+; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.dayDuty' doesn't exist
+2019-04-18 13:52:23.607 ERROR --- [http-nio-9999-exec-4] com.example.acm.conf.MyControllerAdvice Line:25  - /info/getIndexInfo--
+### Error querying database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.dayDuty' doesn't exist
+### The error may exist in file [/home/xg/school_end/acmBackT/acm_program/target/classes/mapper/DayDutyMapper.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: SELECT       a.dayDutyId,   a.dayName,   a.dutyUserNames,   a.createUser,   a.createDate,   a.updateUser,   a.updateData,   a.isEffective      FROM     dayDuty a    WHERE a.dayDutyId = ?
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.dayDuty' doesn't exist
+; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.dayDuty' doesn't exist
+2019-04-18 13:54:06.769 ERROR --- [http-nio-9999-exec-7] com.example.acm.service.deal.Impl.DayDutyDealImpl Line:43  - 
+### Error querying database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.dayDuty' doesn't exist
+### The error may exist in file [/home/xg/school_end/acmBackT/acm_program/target/classes/mapper/DayDutyMapper.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: SELECT       a.dayDutyId,   a.dayName,   a.dutyUserNames,   a.createUser,   a.createDate,   a.updateUser,   a.updateData,   a.isEffective      FROM     dayDuty a;
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.dayDuty' doesn't exist
+; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.dayDuty' doesn't exist
+2019-04-18 13:56:38.443 ERROR --- [http-nio-9999-exec-4] com.example.acm.service.deal.Impl.DayDutyDealImpl Line:43  - 
+### Error querying database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.dayDuty' doesn't exist
+### The error may exist in file [/home/xg/school_end/acmBackT/acm_program/target/classes/mapper/DayDutyMapper.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: SELECT       a.dayDutyId,   a.dayName,   a.dutyUserNames,   a.createUser,   a.createDate,   a.updateUser,   a.updateData,   a.isEffective      FROM     dayDuty a;
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.dayDuty' doesn't exist
+; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.dayDuty' doesn't exist
+2019-04-18 13:58:54.997 ERROR --- [http-nio-9999-exec-1] com.example.acm.service.deal.Impl.CompetitionDealImpl Line:84  - 
+### Error querying database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.applyCompetition' doesn't exist
+### The error may exist in file [/home/xg/school_end/acmBackT/acm_program/target/classes/mapper/ApplyCompetitionMapper.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: SELECT       a.applyCompetitionId,   a.competitionId,   a.joinUser,   a.createDate,   a.isEffective      FROM     applyCompetition a    WHERE  a.competitionId=?                 AND a.isEffective=?
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.applyCompetition' doesn't exist
+; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.applyCompetition' doesn't exist
+2019-04-18 14:05:28.060 ERROR --- [http-nio-9999-exec-10] com.example.acm.service.deal.Impl.AnnounceDealImpl Line:130 - Index: 0, Size: 0
+2019-04-18 14:05:50.964 ERROR --- [http-nio-9999-exec-9] com.example.acm.service.deal.Impl.CompetitionDealImpl Line:84  - 
+### Error querying database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.applyCompetition' doesn't exist
+### The error may exist in file [/home/xg/school_end/acmBackT/acm_program/target/classes/mapper/ApplyCompetitionMapper.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: SELECT       a.applyCompetitionId,   a.competitionId,   a.joinUser,   a.createDate,   a.isEffective      FROM     applyCompetition a    WHERE  a.competitionId=?                 AND a.isEffective=?
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.applyCompetition' doesn't exist
+; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.applyCompetition' doesn't exist
+2019-04-18 14:05:55.496 ERROR --- [http-nio-9999-exec-4] com.example.acm.service.deal.Impl.CompetitionDealImpl Line:84  - 
+### Error querying database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.applyCompetition' doesn't exist
+### The error may exist in file [/home/xg/school_end/acmBackT/acm_program/target/classes/mapper/ApplyCompetitionMapper.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: SELECT       a.applyCompetitionId,   a.competitionId,   a.joinUser,   a.createDate,   a.isEffective      FROM     applyCompetition a    WHERE  a.competitionId=?                 AND a.isEffective=?
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.applyCompetition' doesn't exist
+; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.applyCompetition' doesn't exist
+2019-04-18 17:03:40.934 ERROR --- [http-nio-9999-exec-2] com.example.acm.conf.MyControllerAdvice Line:25  - /uploadImg--Maximum upload size exceeded; nested exception is java.lang.IllegalStateException: org.apache.tomcat.util.http.fileupload.FileUploadBase$FileSizeLimitExceededException: The field myFileName exceeds its maximum permitted size of 1048576 bytes.
+2019-04-18 17:04:42.597 ERROR --- [http-nio-9999-exec-1] com.example.acm.conf.MyControllerAdvice Line:25  - /uploadImg--Maximum upload size exceeded; nested exception is java.lang.IllegalStateException: org.apache.tomcat.util.http.fileupload.FileUploadBase$FileSizeLimitExceededException: The field myFileName exceeds its maximum permitted size of 1048576 bytes.
+2019-04-18 17:09:48.991 ERROR --- [http-nio-9999-exec-5] com.example.acm.conf.MyControllerAdvice Line:25  - /uploadImg--Request method 'GET' not supported
+2019-04-18 17:12:39.926 ERROR --- [http-nio-9999-exec-6] com.example.acm.conf.MyControllerAdvice Line:25  - /uploadImg--Request method 'GET' not supported
+2019-04-18 18:54:57.536 ERROR --- [http-nio-9999-exec-10] com.example.acm.service.deal.Impl.NewsDealImpl Line:86  - 
+### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.newClass' doesn't exist
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: INSERT INTO newClass     ( newsId,    classId,    createUser,    createDate,    updateUser,    updateDate,    isEffective )    values    ( ?,    ?,    ?,    ?,    ?,    ?,    ? )
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.newClass' doesn't exist
+; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.newClass' doesn't exist
+2019-04-18 18:54:59.699 ERROR --- [http-nio-9999-exec-4] com.example.acm.service.deal.Impl.NewsDealImpl Line:86  - 
+### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.newClass' doesn't exist
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: INSERT INTO newClass     ( newsId,    classId,    createUser,    createDate,    updateUser,    updateDate,    isEffective )    values    ( ?,    ?,    ?,    ?,    ?,    ?,    ? )
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.newClass' doesn't exist
+; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.newClass' doesn't exist
+2019-04-18 19:03:27.675 ERROR --- [http-nio-9999-exec-10] com.example.acm.conf.MyControllerAdvice Line:25  - /news/updateNewMain--Required String parameter 'classType' is not present
+2019-04-18 19:03:33.955 ERROR --- [http-nio-9999-exec-3] com.example.acm.conf.MyControllerAdvice Line:25  - /news/updateNewMain--Required String parameter 'classType' is not present
+2019-04-18 19:09:00.329 ERROR --- [http-nio-9999-exec-5] com.example.acm.conf.MyControllerAdvice Line:25  - /news/updateNewMain--Required String parameter 'classType' is not present
+2019-04-18 19:39:11.867 ERROR --- [http-nio-9999-exec-9] com.example.acm.service.deal.Impl.AnnounceDealImpl Line:130 - Index: 0, Size: 0
+2019-04-18 19:43:05.256 ERROR --- [http-nio-9999-exec-6] com.example.acm.service.deal.Impl.AnnounceDealImpl Line:130 - Index: 0, Size: 0
+2019-04-18 19:52:01.537 ERROR --- [http-nio-9999-exec-4] com.example.acm.service.deal.Impl.AnnounceDealImpl Line:130 - Index: 0, Size: 0
+2019-04-18 19:54:44.082 ERROR --- [http-nio-9999-exec-8] com.example.acm.service.deal.Impl.CompetitionDealImpl Line:84  - 
+### Error querying database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.applyCompetition' doesn't exist
+### The error may exist in file [/home/xg/school_end/acmBackT/acm_program/target/classes/mapper/ApplyCompetitionMapper.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: SELECT       a.applyCompetitionId,   a.competitionId,   a.joinUser,   a.createDate,   a.isEffective      FROM     applyCompetition a    WHERE  a.competitionId=?                 AND a.isEffective=?
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.applyCompetition' doesn't exist
+; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.applyCompetition' doesn't exist
+2019-04-18 19:55:35.482 ERROR --- [http-nio-9999-exec-6] com.example.acm.service.deal.Impl.CompetitionDealImpl Line:84  - 
+### Error querying database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.applyCompetition' doesn't exist
+### The error may exist in file [/home/xg/school_end/acmBackT/acm_program/target/classes/mapper/ApplyCompetitionMapper.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: SELECT       a.applyCompetitionId,   a.competitionId,   a.joinUser,   a.createDate,   a.isEffective      FROM     applyCompetition a    WHERE  a.competitionId=?                 AND a.isEffective=?
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.applyCompetition' doesn't exist
+; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'acm.applyCompetition' doesn't exist
+2019-04-18 20:20:27.679 ERROR --- [http-nio-9999-exec-9] com.example.acm.controller.userController Line:80  - Index: 0, Size: 0
+java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+	at java.util.ArrayList.rangeCheck(ArrayList.java:657)
+	at java.util.ArrayList.get(ArrayList.java:433)
+	at com.example.acm.controller.userController.login(userController.java:66)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:209)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:136)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:102)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:877)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:783)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:991)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:925)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:974)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:877)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:661)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:851)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:96)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:109)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:496)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:803)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:790)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1468)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
